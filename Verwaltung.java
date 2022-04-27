@@ -38,6 +38,18 @@ import java.util.Scanner;
 			String informatik = "Informatik [Ge]";
 			// ... wie kann ich nun diese Fächer in eine dynamische Liste einfügen?
 			
+			// OLD
+			WueList cooleAlteListe = new WueList();
+			cooleAlteListe.insertFirst(new Lehrer("Felix", "Balduin", "14.02.89", true, true));
+			
+			//NEW 
+			List<User> cooleUserList = new List<User>();
+			cooleUserList.insert(new Lehrer("Felix", "Balduin", "14.02.89", true, true));
+			cooleUserList.insert(l1);
+			
+			List<String> cooleListe = new List<String>();
+			cooleListe.insert(geschichte);
+			cooleListe.insert("Sowi");
 	}
 	
 	/**
