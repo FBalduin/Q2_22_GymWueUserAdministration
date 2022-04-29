@@ -235,7 +235,7 @@ public class Gui extends JFrame {
 	// Zeige User
     protected void showUser() {
 		// Navigiere zum ausgewaehlten Nutzer
-											 // todo * - gebe Index von Usern aus... diese Methode muss leider noch in List einprogrammiert werden.
+				// todo * - gebe Index von Usern aus... diese Methode gibt es schon in List
         listNutzer.setSelectedIndex(Verwaltung.myWueList.getIndex());
 		
 		// Deaktiviere Pfeile First,Previous wenn man am Anfang der Liste ist
