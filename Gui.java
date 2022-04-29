@@ -58,6 +58,7 @@ public class Gui extends JFrame {
 
         listNutzer.addListSelectionListener(e -> {
             int index = listNutzer.getSelectedIndex();
+            // todo s.U.* - ändere Methode auf neue get-Methode - hat Hr. Balduin eingeführt
             Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.get(index));
             showUser();
         });
@@ -106,7 +107,7 @@ public class Gui extends JFrame {
         buttonAdd.addActionListener(e -> {
             // Füge neuen Schüler in List...
             Schueler s = new Schueler(fieldVorname.getText(), fieldName.getText(), fieldGebdat.getText());
-            Verwaltung.myWueList.append(s);
+            Verwaltung.myWueList.append(s);	// todo*
             fieldEreignis.setText("Nutzer eingefügt");
             // Verwaltung.myWueList.getFirst().getUser().printDefaultData();
         });
@@ -120,7 +121,7 @@ public class Gui extends JFrame {
         buttonEdit.setForeground(Color.decode("#000000"));
         buttonEdit.addActionListener(e -> {
             Schueler s = new Schueler(fieldVorname.getText(), fieldName.getText(), fieldGebdat.getText());
-            Verwaltung.myWueList.getCurrent().setUser(s);
+            Verwaltung.myWueList.getCurrent().setUser(s);	//todo*
 
             fieldEreignis.setText("Nutzer bearbeitet.");
         });
@@ -159,9 +160,12 @@ public class Gui extends JFrame {
         arrowPreviousElement.setBackground(Color.decode("#FFFFFF"));
         arrowPreviousElement.setForeground(Color.decode("#000000"));
         arrowPreviousElement.addActionListener(e -> {
+								// todo *
             if (Verwaltung.myWueList.getCurrent() == null) {
+								// todo *
                 Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.getFirst());
             } else {
+								// todo *
                 Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.getBefore());
             }
 
@@ -176,9 +180,12 @@ public class Gui extends JFrame {
         arrowNextElement.setBackground(Color.decode("#FFFFFF"));
         arrowNextElement.setForeground(Color.decode("#000000"));
         arrowNextElement.addActionListener(e -> {
+							// todo*
             if (Verwaltung.myWueList.getCurrent() == null) {
+							// todo*
                 Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.getFirst());
             } else {
+							// todo*
                 Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.getCurrent().getNext());
             }
 
@@ -193,6 +200,7 @@ public class Gui extends JFrame {
         arrowLastElement.setBackground(Color.decode("#FFFFFF"));
         arrowLastElement.setForeground(Color.decode("#000000"));
         arrowLastElement.addActionListener(e -> {
+							// todo s.U.*
             Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.getLast());
 
             showUser();
@@ -205,7 +213,7 @@ public class Gui extends JFrame {
         fieldEreignis.setBounds(25 + widthList, 310, 350, 25);
         contentPane.add(fieldEreignis);
 
-        //
+        // todo*
         Verwaltung.myWueList.setCurrent(Verwaltung.myWueList.getFirst());
         showUser();
     }
@@ -213,21 +221,25 @@ public class Gui extends JFrame {
 	// Initialisiere Liste
     protected void initList() {
         dlm.removeAllElements();
-
+		// todo* - speichere vorhandene Liste in neue Liste<User>
         WueList temp = Verwaltung.myWueList;
-        temp.setCurrent(temp.getFirst());
+        temp.setCurrent(temp.getFirst()); // todo s.U.* setze Current auf First
         while (temp.getCurrent().hasNext()) {
+									// todo s.U.* add aktuellen Content/User aus temp-List
             dlm.addElement(temp.getCurrent().getUser());
+									// todo s.U.* add aktuellen Content/User aus temp-List
             temp.setCurrent(temp.getCurrent().getNext());
         }
     }
 
 	// Zeige User
     protected void showUser() {
-		// Navigiere zum ausgewhlten Nutzer
+		// Navigiere zum ausgewaehlten Nutzer
+											 // todo * - gebe Index von Usern aus... diese Methode muss leider noch in List einprogrammiert werden.
         listNutzer.setSelectedIndex(Verwaltung.myWueList.getIndex());
 		
 		// Deaktiviere Pfeile First,Previous wenn man am Anfang der Liste ist
+		// todo *										// todo *
         if (Verwaltung.myWueList.getCurrent() == Verwaltung.myWueList.getFirst()) {
             arrowPreviousElement.setEnabled(false);
             arrowFirstElement.setEnabled(false);
@@ -239,6 +251,7 @@ public class Gui extends JFrame {
         }
 		
         // Deaktiviere Pfeile Last,Next wenn man am Ende der Liste ist
+			// todo *											// todo *
         if (Verwaltung.myWueList.getCurrent() == Verwaltung.myWueList.getLast()) {
             arrowNextElement.setEnabled(false);
             arrowLastElement.setEnabled(false);
@@ -249,6 +262,7 @@ public class Gui extends JFrame {
             arrowLastElement.setEnabled(true);
         }
         // Setze Text nach dem ersten Laden
+									 //  s.U.*
         fieldVorname.setText(Verwaltung.myWueList.getCurrent().getUser().getVorname());
         fieldName.setText(Verwaltung.myWueList.getCurrent().getUser().getNachname());
         fieldGebdat.setText(Verwaltung.myWueList.getCurrent().getUser().getGeb().toString());
