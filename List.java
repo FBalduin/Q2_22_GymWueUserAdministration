@@ -340,4 +340,61 @@ public class List<ContentType> {
     }
   }
 
+
+ // NEUE METHODEN VON HR. BALDUIN
+
+/**
+   * Liefert ListNode von einer Position zurück - d.h. so kann z.B. Element 3 der Liste herausgegeben werden
+   *
+   * @param position
+   *         Int-Position die zurückgegeben werden soll
+   * @return der  Knoten / ListNode an der Stelle position der Liste
+   */
+   public ListNode get(int position) {
+			if (position > this.getLength()) {
+				return null;
+			}
+			this.current=first;
+			for (int i = 0; i < position; i++) {
+					next();
+			}
+			return this.current;
+		}
+	 
+   /**
+   * Liefert Länge der der Liste zurück
+   *
+   * @return Länge der Liste
+   */
+   public int getLength() {
+		this.current=this.first;
+        int i = 0;
+        while (this.hasAccess()) {
+            i++;
+            next();
+        }
+
+        return i;
+    }
+    
+   /**
+   * Gibt Index von Current zurück
+   *
+   * @return int - Index von Current
+   */
+    public int getIndex() {
+        ListNode temp = first;
+
+        int i = 0;
+        while (temp!=null) {
+            if (temp.equals(this.current)) {
+                return i;
+            }
+
+            i++;
+            next();
+        }
+
+        return 0;
+    }
 }
