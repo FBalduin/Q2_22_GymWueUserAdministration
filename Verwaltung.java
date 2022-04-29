@@ -4,15 +4,21 @@ import java.util.Scanner;
 
  class  Verwaltung	{
 	
+	// todo1* - rauskommentieren bzw. löschen - wird nicht mehr benötigt.
 	public static WueList myWueList; // globale statische Variable für Array von Usern
 	public static WueList lehrerListe = new WueList(); // globale statische Variable für Array von Usern
+	
+	// todo 2* - neue List für alle User anlegen (habe ich also schon gemacht)
+	public static List<User> myUserList;
 
 	public static User[] myWueArray; // globale statische Variable für List von Usern
 	
 	public static void main(String[] args)	{	
 			// Lese aus CSV-Daten in Liste ein...
+			// todo 3* - ändere Methode so, dass Daten als List<User> entgegen genommen werden können...
             myWueList = csv2UserList("userdata.csv");	
             // Lade GUI
+            // späteres todo 4* GUI angepasst wurde - wieder einkommentieren
 			// Gui wv = new Gui("WueVerwaltung - WV");
 			
 			Lehrer l1 = new Lehrer("Felix", "Balduin", "14.02.89", true, true);
@@ -29,15 +35,12 @@ import java.util.Scanner;
 			myWueList.setCurrent(myWueList.getFirst());	// Setze Zeiger auf First
 			while(myWueList.getCurrent()!=null)	{
 				if(myWueList.getCurrent().getUser() instanceof Lehrer)	{
-					myWueList.getCurrent().getUser().printDefaultData();
+					myWueList.getCurrent().getUser().toString();
 				}
 				myWueList.setCurrent(myWueList.getCurrent().getNext());
 			}
-			
-			String geschichte = "Geschichte [Ge]";
-			String informatik = "Informatik [Ge]";
-			// ... wie kann ich nun diese Fächer in eine dynamische Liste einfügen?
-			
+						
+			// Beispiel
 			// OLD
 			WueList cooleAlteListe = new WueList();
 			cooleAlteListe.insertFirst(new Lehrer("Felix", "Balduin", "14.02.89", true, true));
@@ -48,7 +51,7 @@ import java.util.Scanner;
 			cooleUserList.insert(l1);
 			
 			List<String> cooleListe = new List<String>();
-			cooleListe.insert(geschichte);
+			cooleListe.insert("Geschichte");
 			cooleListe.insert("Sowi");
 	}
 	
@@ -122,9 +125,10 @@ import java.util.Scanner;
      * @param - Eingabe: unsortiertes Array
      * @return - Ausgabe: sortiertes Array
      */
+    // todo 3* s.Oben - hier soll Eingabe als Liste zurückgegeben werden genommen werden
 	public static WueList csv2UserList(String filepath){
 		// Lege Array an...
-        WueList userList = new WueList(); 
+        WueList userList = new WueList(); 	// todo 3*
         try
         {
             // lese Zeilenweise CSV-Datei ein
@@ -143,7 +147,7 @@ import java.util.Scanner;
                 data[1] = dataScanner.next();
                 // speichere zweiten Wert an Stelle 2
                 data[2] = dataScanner.next();
-                
+                // todo 3*
                 userList.insertFirst(new Schueler(data[1], data[0], data[2]));           
                 i++;	// Zähle Variable entsprechend hoch...
             }
